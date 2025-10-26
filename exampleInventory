@@ -1,0 +1,71 @@
+# This is the Ansible Automation Platform installer inventory file intended for the RPM growth deployment topology.
+# Consult the Ansible Automation Platform product documentation about this topology's tested hardware configuration.
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/tested_deployment_models/rpm-topologies
+#
+# Consult the docs if you are unsure what to add
+# For all optional variables consult the Ansible Automation Platform documentation:
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/rpm_installation/index
+
+
+# This section is for your platform gateway hosts
+# -----------------------------------------------------
+[automationgateway]
+192.168.0.236
+
+# This section is for your automation controller hosts
+# -----------------------------------------------------
+[automationcontroller]
+192.168.0.146
+
+[automationcontroller:vars]
+peers=execution_nodes
+
+# This section is for your Ansible Automation Platform execution hosts
+# -----------------------------------------------------
+[execution_nodes]
+
+
+# This section is for your automation hub hosts
+# -----------------------------------------------------
+[automationhub]
+192.168.0.89
+
+# This section is for your Event-Driven Ansible controller hosts
+# -----------------------------------------------------
+[automationedacontroller]
+
+# This section is for the Ansible Automation Platform database
+# -----------------------------------------------------
+[database]
+192.168.0.47
+
+[all:vars]
+
+# Common variables
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/rpm_installation/appendix-inventory-files-vars#general-variables
+# -----------------------------------------------------
+registry_username=kersmaka3
+registry_password=Anth2&32
+
+redis_mode=standalone
+
+# Platform gateway
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/rpm_installation/appendix-inventory-files-vars#platform-gateway-variables
+# -----------------------------------------------------
+automationgateway_admin_password=redhat
+automationgateway_pg_host=gatewaydb
+automationgateway_pg_password=redhat
+
+# Automation controller
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/rpm_installation/appendix-inventory-files-vars#controller-variables
+# -----------------------------------------------------
+admin_password=redhat
+pg_host=192.168.0.47
+pg_password=redhat
+
+# Automation hub
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/rpm_installation/appendix-inventory-files-vars#hub-variables
+# -----------------------------------------------------
+automationhub_admin_password=redhat
+automationhub_pg_host=192.168.0.47
+automationhub_pg_password=redhat
